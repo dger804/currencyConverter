@@ -1,49 +1,19 @@
 import React from "react";
+import CurrencyApp from "./src/currency-app"
+import { DataExchangeOption } from "./src/MOCK"
+// todo: use mirageJS using server mock
+// todo: use an external API to get datae xchange options
 
 const App = () => {
-  const dataExchangeOption = [
-    {
-      "type": "COP",
-      "rate": 0.5
-    },
-    {
-      "type": "USD",
-      "rate": 0.1
-    },
-    {
-      "type": "EUR",
-      "rate": 0.2
-    },
-  ]
 
   return (
     <>
       <h1>
         Currency Converter
       </h1>
-      <div>
-        <div>
-          <input placeholder="Currency Amount Field" />
-          <select>
-            {
-              dataExchangeOption.map((option) =>
-                <option key={option.type} >{option.type}</option>
-              )
-            }
-
-          </select>
-        </div>
-        <div>
-          <input placeholder="Currency Amount Field" />
-          <select>
-            {
-              dataExchangeOption.map((option) =>
-                <option key={option.type}>{option.type}</option>
-              )
-            }
-          </select>
-        </div>
-      </div>
+      <CurrencyApp
+        initialAmount="1"
+        initialDataExchangeOption={DataExchangeOption} />
     </>
   )
 }
