@@ -6,18 +6,17 @@ export default function CurrencyApp({ initialAmount, initialDataExchangeOption }
   const [to, setTo] = useState("USD")
 
   const convert = () => {
+    const finalRate = initialDataExchangeOption.find((item) => {
+      if (item.base === to) {
+        if (item.rates.cop === from) console.log(item.rates.cop)
+      }
+    })
 
+    const result = currency / finalRate
+    console.log(result)
 
-
-
-    const finalRate = initialDataExchangeOption[0].rates.USD
-
-
-
-    return finalRate * currency
+    return result
   }
-
-
 
   return (
     <>
@@ -25,23 +24,22 @@ export default function CurrencyApp({ initialAmount, initialDataExchangeOption }
         <div>
           <input
             placeholder="Currency Amount Field"
-            value={currency} />
-          <select defaultValue={from} onChange={(e) => setFrom(e.target.value)}>
+            defaultValue={initialAmount}
+            onChange={(e) => setCurrency(e.target.value)}
+          />
+          <select onChange={(e) => setFrom(e.target.value)}>
             {
               initialDataExchangeOption.map((option) =>
                 <option key={option.base} >{option.base}</option>
               )
             }
-
           </select>
         </div>
         <div>
-          <input name='a' placeholder="Currency Amount Field" />
-          <select defaultValue={to} onChange={(e) => {
-
-            document.getElementById('a').value = convert()
+          <input type="text" id='a' placeholder="Currency Amount Field" />
+          <select value={to} onChange={(e) => {
             setTo(e.target.value)
-
+            document.getElementById('a').value = convert()
 
           }} >
             {
