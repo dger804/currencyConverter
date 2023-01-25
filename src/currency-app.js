@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function CurrencyApp({ initialAmount, initialDataExchangeOption }) {
   const [currency, setCurrency] = useState(initialAmount)
   const [from, setFrom] = useState("COP")
   const [to, setTo] = useState("USD")
 
+  useEffect(() => {
+    convert()
+  }, [])
+
   const convert = () => {
-    const finalRate = initialDataExchangeOption.find((item) => {
-      if (item.base === to) {
-        if (item.rates.cop === from) console.log(item.rates.cop)
+    const finalRate = initialDataExchangeOption.filter((item) => {
+      if (item.base === from) {
+        const rate = item.rates
+        console.log(rate)
+        console.log(to)
+        if (Object.keys[rate] === to) {
+          console.log(Object.values(rate))
+        }
       }
     })
 
